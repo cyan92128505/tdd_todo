@@ -1,4 +1,4 @@
-.PHONY: run run-dev run-web-dev run-web build build-ios build-apk build-appbundle build-model test watch help
+.PHONY: run run-dev run-web-dev run-web build build-ios build-apk build-appbundle build-model test coverage watch help
 
 help:
 	@echo "make run 執行default app"
@@ -8,7 +8,8 @@ help:
 	@echo "make build-apk 建置APK"
 	@echo "make build-appbundle 建置appbundle"
 	@echo "make build-model 編譯元件"
-	@echo "make test 編譯元件"
+	@echo "make test 測試元件"
+	@echo "make coverage 產生測試報告"
 	@echo "make watch 即時編譯"	
 	@echo "make update-build-number 上升一個版本號"	
 
@@ -38,6 +39,9 @@ build-model:
 
 test:
 	@flutter test
+
+coverage:
+	@sh gencov.sh
 
 watch:
 	@dart pub run build_runner watch
