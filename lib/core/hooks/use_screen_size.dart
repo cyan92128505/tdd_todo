@@ -23,7 +23,4 @@ class _ScreenSizeHook extends Hook<Size> {
 class _ScreenSizeHookState extends HookState<Size, _ScreenSizeHook> {
   @override
   Size build(BuildContext context) => MediaQuery.of(context).size;
-
-  @override
-  String get debugLabel => 'useScreenSize';
 }

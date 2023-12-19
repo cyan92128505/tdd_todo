@@ -9,6 +9,8 @@ class TodoAddModal extends HookWidget {
   static const closeButtonKey = ValueKey('TodoAddModalClose');
   static const saveButtonKey = ValueKey('TodoAddModalSave');
   static const contentKey = ValueKey('TodoAddModalContent');
+  static const segmentedButtonKey = ValueKey('TodoAddModalSegmentedButton');
+
   const TodoAddModal({super.key});
 
   static Future<TodoItem?> open({
@@ -35,7 +37,7 @@ class TodoAddModal extends HookWidget {
   Widget build(BuildContext context) {
     final textController = useTextEditingController();
     final canSave = useState(false);
-    final importentType = useState(PriorityType.none);
+    final type = useState(PriorityType.none);
 
     return Material(
       color: Colors.transparent,
@@ -63,7 +65,7 @@ class TodoAddModal extends HookWidget {
 
                     context.pop(TodoItem(
                       content: textController.text,
-                      type: importentType.value,
+                      type: type.value,
                     ));
                   },
                   icon: Icon(
@@ -90,6 +92,7 @@ class TodoAddModal extends HookWidget {
               ),
             ),
             SegmentedButton(
+              key: segmentedButtonKey,
               showSelectedIcon: false,
               segments: PriorityType.values
                   .map(
@@ -102,9 +105,9 @@ class TodoAddModal extends HookWidget {
                     ),
                   )
                   .toList(),
-              selected: {importentType.value},
+              selected: {type.value},
               onSelectionChanged: (value) {
-                importentType.value = value.first;
+                type.value = value.first;
               },
             ),
           ],

@@ -14,6 +14,7 @@ void main() {
 
       await tester.pumpWidget(HookBuilder(builder: (context) {
         final size = useScreenSize();
+
         originalSize = MediaQuery.of(context).size;
         return SizedBox(
           key: key,

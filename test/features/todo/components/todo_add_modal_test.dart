@@ -9,7 +9,10 @@ void main() {
 
   group('TodoAddModal test', () {
     testWidgets('TodoAddModal test', (WidgetTester tester) async {
-      const todoItem = TodoItem(content: 'Hi', id: 'test');
+      const todoItem = TodoItem(
+        content: 'Hi',
+        id: 'test',
+      );
       final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
       final router = GoRouter(
@@ -41,6 +44,7 @@ void main() {
 
       await tester.tap(find.byKey(TodoAddModal.contentKey));
       tester.testTextInput.enterText(todoItem.content);
+
       await tester.tap(find.byKey(TodoAddModal.saveButtonKey));
     });
   });
