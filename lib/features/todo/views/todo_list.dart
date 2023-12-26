@@ -13,25 +13,20 @@ class TodoList extends HookConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text('Todo List')),
-      body: ListView(
-        children: todoList
-            .asMap()
-            .map(
-              (index, todoItem) => MapEntry(
-                index,
-                TodoTerm(
-                  todoItem: todoItem,
-                  onToggle: () {
-                    ref.read(todoProvider.notifier).toggle(todoItem.id);
-                  },
-                  onRemove: () {
-                    ref.read(todoProvider.notifier).removeTodo(todoItem.id);
-                  },
-                ),
-              ),
-            )
-            .values
-            .toList(),
+      body: ListView.builder(
+        itemCount: todoList.length,
+        itemBuilder: (context, index) {
+          final todoItem = todoList[index];
+          return TodoTerm(
+            todoItem: todoItem,
+            onToggle: () {
+              ref.read(todoProvider.notifier).toggle(todoItem.id);
+            },
+            onRemove: () {
+              ref.read(todoProvider.notifier).removeTodo(todoItem.id);
+            },
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
