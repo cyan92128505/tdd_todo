@@ -7,7 +7,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   group('useScreenSize test', () {
-    testWidgets('TodoTerm Toggle test', (WidgetTester tester) async {
+    testWidgets('useScreenSize test', (WidgetTester tester) async {
       const key = ValueKey('size');
 
       late Size originalSize;
